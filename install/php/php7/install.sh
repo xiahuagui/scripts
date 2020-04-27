@@ -3,11 +3,13 @@ source ../../header.sh
 source ./version.sh
 
 dependencies() {
-	yum -y install libxml2 libxml2-devel
+	yum -y install libxml2 libxml2-devel 
 	yum -y install openssl openssl-devel
 	yum -y install bzip2  bzip2-devel
 	yum -y install libcurl-devel 
 	yum -y install gmp-devel 
+	yum -y install sqlite-devel 
+	yum -y install oniguruma-devel
 	yum -y install recode-devel 
 	yum -y install libxslt-devel 
 	yum -y install gd-devel
@@ -21,7 +23,7 @@ dependencies() {
 
 download() {
 	php_tgz=php-${PHP_V}.tar.gz
-  mcrypt_tgz=libmcrypt-2.5.8.tar.gz
+  #mcrypt_tgz=libmcrypt-2.5.8.tar.gz
 
 	if [ ! -f $download/$php_tgz ];
 	then
@@ -30,22 +32,21 @@ download() {
 		tar zxvf $php_tgz
 	fi
 
-	if [ ! -f $download/$mcrypt_tgz ];
-	then
+	#if [ ! -f $download/$mcrypt_tgz ];
+	#then
 		#wget http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz -O libmcrypt-2.5.8.tar.gz
-		#wget http://211.79.60.17//project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz -O libmcrypt-2.5.8.tar.gz
-		wget https://zh.osdn.net/projects/sfnet_mcrypt/downloads/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz
-		tar zxvf libmcrypt-2.5.8.tar.gz
-	fi
+	#	wget http://211.79.60.17//project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz -O libmcrypt-2.5.8.tar.gz
+	#	tar zxvf libmcrypt-2.5.8.tar.gz
+	#fi
 
 }
 
 install() {
-	cd $download/libmcrypt-2.5.8/
-	./configure;make;make install
-	cd $download/libmcrypt-2.5.8/libltdl
-	./configure --enable-ltdl-install
-	make;make install
+	#cd $download/libmcrypt-2.5.8/
+	#./configure;make;make install
+	#cd $download/libmcrypt-2.5.8/libltdl
+	#./configure --enable-ltdl-install
+	#make;make install
 	yum -y install libicu libicu-devel
 
 	cd $download/php-${PHP_V}
